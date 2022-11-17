@@ -1,6 +1,9 @@
 package com.sda.bogdan.bookmanagement;
 
+import com.sda.bogdan.bookmanagement.controller.AuthorController;
 import com.sda.bogdan.bookmanagement.menu.UserOption;
+import com.sda.bogdan.bookmanagement.repository.AuthorRepositoryImpl;
+import com.sda.bogdan.bookmanagement.service.AuthorServiceImpl;
 import com.sda.bogdan.bookmanagement.utils.SessionManager;
 
 import java.util.Scanner;
@@ -9,8 +12,11 @@ public class Main {
     public static void main(String[] args) {
         SessionManager.getSessionFactory();
 
+        AuthorController authorController = new AuthorController(new AuthorServiceImpl( new AuthorRepositoryImpl()));
+
         Scanner scanner = new Scanner(System.in);
         UserOption.printAllOptions();
+
 
         UserOption userOption = UserOption.UNKNOW;
         do {
@@ -24,7 +30,7 @@ public class Main {
             }
             switch (userOption) {
                 case CREATE_AUTHOR:
-                    System.out.println("Not implemented");
+                    authorController.createAuthor();
                     break;
                 case EXIT:
                     System.out.println("Goodbye!");
@@ -38,6 +44,9 @@ public class Main {
         } while (userOption != userOption.EXIT);
 
     SessionManager.shutDown();
+
+
+
     }
 
 }

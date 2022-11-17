@@ -8,9 +8,9 @@ BMS-16: Add hibernate model.
 
 BMS-17: Add generic repositories.
 
-BMS-18: Create user name.
+DONE! BMS-18: Create user name.
 
-BMS-1: As a user I should be able to add a new author in the system by providing the author first name and last name.
+DONE! BMS-1: As a user I should be able to add a new author in the system by providing the author first name and last name.
         The system should validate the first name and last name to not be empty or blank.
         The system should genrate a new unique autentification number.
 
