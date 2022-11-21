@@ -12,13 +12,12 @@ public class Review {
     @Column(name = "score")
     private Integer score;
     @Column(name = "comment")
-    private  String comment;
-
+    private String comment;
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
-    private Review(){
 
+    public Review() {
     }
 
     public Review(Integer score, String comment) {
@@ -48,6 +47,7 @@ public class Review {
 
     public void setComment(String comment) {
         this.comment = comment;
+
     }
 
     public Book getBook() {
@@ -60,7 +60,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "BookReview{" +
                 "id=" + id +
                 ", score=" + score +
                 ", comment='" + comment + '\'' +

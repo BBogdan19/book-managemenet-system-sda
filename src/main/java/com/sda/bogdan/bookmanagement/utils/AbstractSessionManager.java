@@ -18,7 +18,7 @@ public abstract class AbstractSessionManager {
     private static final String DATABASE_PASSWORD = "root";
 
 
-    private static final String DATABASE_SHOW_SQL = "true";
+    private static final String DATABASE_SHOW_SQL = "false";
 
     //private static final String DATABASE_HBM2DDL_AUTO = "create-drop";
     private static final String DATABASE_HBM2DDL_AUTO = "update";
@@ -36,8 +36,7 @@ public abstract class AbstractSessionManager {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, DATABASE_DRIVER);
 
-                settings.put(Environment.URL,
-                        DATABASE_HOST.concat(databaseName));
+                settings.put(Environment.URL, DATABASE_HOST.concat(databaseName));
                 settings.put(Environment.USER, DATABASE_USERNAME);
                 settings.put(Environment.PASS, DATABASE_PASSWORD);
 

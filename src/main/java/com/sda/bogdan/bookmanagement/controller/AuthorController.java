@@ -2,8 +2,10 @@ package com.sda.bogdan.bookmanagement.controller;
 
 import com.sda.bogdan.bookmanagement.service.AuthorService;
 import com.sda.bogdan.bookmanagement.service.exceptions.EntityNotFoundException;
-import com.sda.bogdan.bookmanagement.service.exceptions.InvalidParameterException;
 
+
+
+import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 public class AuthorController {
@@ -16,27 +18,20 @@ public class AuthorController {
 
     public void createAuthor() {
         try {
-            System.out.println("Please insert Author's first name: ");
+            System.out.println("Please insert author first name:");
             String firstName = scanner.nextLine();
-            System.out.println("Please insert Author's last name: ");
+            System.out.println("Please insert author last name:");
             String lastName = scanner.nextLine();
 
-
             authorService.createAuthor(firstName, lastName);
-            System.out.println("Author was created");
+            System.out.println("Author was created!");
         } catch (InvalidParameterException e) {
             System.out.println(e.getMessage());
-        } catch (Exception ex) {
-            System.out.println("Internal server error");
+        } catch (Exception e) {
+            System.out.println("Internal server error!");
         }
     }
 
-    public void showAllAuthors() {
-        authorService.getAllAuthors().stream().forEach(author ->
-                System.out.println("Author with id: " + author.getId() + " lastname: " + author.getLastname() + " firstname: " + author.getFirstname())
-        );
-
-    }
     public void updateAuthor() {
         try {
             System.out.println("Please insert an author id!");
@@ -55,5 +50,24 @@ public class AuthorController {
         } catch (Exception e) {
             System.out.println("Internal server error");
         }
+    }
+
+    public void deleteAuthor() {
+        System.out.println("Please insert author id!");
+        int authorId = Integer.parseInt(scanner.nextLine());
+        try {
+            authorService.deleteAuthor(authorId);
+        } catch (EntityNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Internal server error");
+        }
+    }
+    public void showAllAuthors() {
+        authorService.getAllAuthors().stream().forEach(author ->
+                System.out.println("Author with id: " + author.getId() + " first name: " + author.getFirstName() + " last name: " + author.getLastName())
+        );
     }
 }

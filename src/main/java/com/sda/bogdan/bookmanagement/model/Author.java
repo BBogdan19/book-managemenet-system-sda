@@ -6,27 +6,26 @@ import java.util.List;
 @Entity
 @Table(name = "author")
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
     @Column(name = "first_name")
-    private String firstname;
+    private String firstName;
     @Column(name = "last_name")
-    private String lastname;
+    private String lastName;
 
-    //not requaired in current specification
-    //    @OneToMany(mappedBy = "author")
+    // Not required in the current specification
+
+    //    @OneToMany (mappedBy = "author")
     //    private List<Book> books;
 
-    public Author(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Author() {
     }
 
-    public Author(){
-
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Integer getId() {
@@ -37,28 +36,28 @@ public class Author {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String last_Name) {
+        this.lastName = last_Name;
     }
 
     @Override
     public String toString() {
         return "Author{" +
                 "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", last_Name='" + lastName + '\'' +
                 '}';
     }
 }

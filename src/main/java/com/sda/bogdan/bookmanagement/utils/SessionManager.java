@@ -15,7 +15,7 @@ public class SessionManager extends AbstractSessionManager {
     }
 
     public static SessionFactory getSessionFactory() {
-        return INSTANCE.getSessionFactory("book_management_system");
+        return INSTANCE.getSessionFactory("book_management_session");
     }
 
     public static void shutDown() {
@@ -24,7 +24,6 @@ public class SessionManager extends AbstractSessionManager {
 
     @Override
     protected void setAnnotatedClasses(Configuration configuration) {
-        // Hibernate model will be added here
         configuration.addAnnotatedClass(Author.class);
         configuration.addAnnotatedClass(Book.class);
         configuration.addAnnotatedClass(Review.class);

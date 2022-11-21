@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BaseRepositoryImpl<T> implements BaseRepository <T> {
+public class BaseRepositoryImpl<T> implements BaseRepository<T> {
     private Class<T> entityClass;
 
     public BaseRepositoryImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
+    @Override
     public Optional<T> findById(Integer id) {
         try (Session session = SessionManager.getSessionFactory().openSession()) {
             T entity = session.find(entityClass, id);
@@ -28,7 +29,6 @@ public class BaseRepositoryImpl<T> implements BaseRepository <T> {
     @Override
     public void create(T entity) {
         Transaction transaction = null;
-
         try (Session session = SessionManager.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
@@ -36,11 +36,10 @@ public class BaseRepositoryImpl<T> implements BaseRepository <T> {
             session.save(entity);
 
             transaction.commit();
-
         } catch (Exception e) {
             e.printStackTrace();
-
             if (transaction != null) {
+
                 transaction.rollback();
             }
         }
@@ -49,7 +48,6 @@ public class BaseRepositoryImpl<T> implements BaseRepository <T> {
     @Override
     public void update(T entity) {
         Transaction transaction = null;
-
         try (Session session = SessionManager.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
@@ -57,42 +55,36 @@ public class BaseRepositoryImpl<T> implements BaseRepository <T> {
             session.update(entity);
 
             transaction.commit();
-
         } catch (Exception e) {
-            e.printStackTrace();
 
+            e.printStackTrace();
             if (transaction != null) {
+
                 transaction.rollback();
             }
         }
-
     }
 
     @Override
-    public void delete(T entity) {Transaction transaction = null;
-
+    public void delete(T entity) {
+        Transaction transaction = null;
         try (Session session = SessionManager.getSessionFactory().openSession()) {
-
             transaction = session.beginTransaction();
-
             session.delete(entity);
-
             transaction.commit();
-
         } catch (Exception e) {
             e.printStackTrace();
-
             if (transaction != null) {
                 transaction.rollback();
             }
         }
-
     }
 
     @Override
     public List<T> findAll() {
-        try (Session session = SessionManager.getSessionFactory().openSession()) {
-            return session.createQuery("FROM " + entityClass.getName(),entityClass).list();
+        try{
+            Session session = SessionManager.getSessionFactory().openSession();
+            return session.createQuery("FROM " + entityClass.getName(), entityClass).list();
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<>();

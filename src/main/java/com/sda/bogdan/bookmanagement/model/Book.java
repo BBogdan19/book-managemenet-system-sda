@@ -2,11 +2,9 @@ package com.sda.bogdan.bookmanagement.model;
 
 import javax.persistence.*;
 import java.util.List;
-
 @Entity
 @Table(name = "book")
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -15,19 +13,19 @@ public class Book {
     private String title;
     @Column(name = "description")
     private String description;
-
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
 
     @OneToMany(mappedBy = "book")
-    private List<Review> reviews;
+    private List<Review> bookReviews;
+
+    public Book() {
+    }
+
     public Book(String title, String description) {
         this.title = title;
         this.description = description;
-    }
-    public Book(){
-
     }
 
     public Integer getId() {
@@ -62,12 +60,12 @@ public class Book {
         this.author = author;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public List<Review> getBookReviews() {
+        return bookReviews;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setBookReviews(List<Review> bookReviews) {
+        this.bookReviews = bookReviews;
     }
 
     @Override
@@ -75,7 +73,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
+                ", description='" + description +
                 '}';
     }
 }
