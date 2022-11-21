@@ -1,4 +1,5 @@
 package com.sda.bogdan.bookmanagement.repository;
+import java.util.List;
 import java.util.Optional;
 
 public interface BaseRepository<T> {
@@ -9,5 +10,7 @@ public interface BaseRepository<T> {
     void update(T entity);
 
     void delete(T entity);
+
+    List<T> findAll();
 
 }

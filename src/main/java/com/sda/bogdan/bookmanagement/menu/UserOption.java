@@ -2,6 +2,7 @@ package com.sda.bogdan.bookmanagement.menu;
 
 public enum UserOption {
     CREATE_AUTHOR(1,"Create Author"),
+    SHOW_ALL_AUTHORS(2,"Display all authors"),
     EXIT(99,"Exit"),
     UNKNOW(100,"Unknow Option");
 
